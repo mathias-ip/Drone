@@ -6,6 +6,7 @@
 //#include <LiquidCrystal.h>
 #include <LCD.h>
 #include <LiquidCrystal_I2C.h>
+#include <drone.h>
 using namespace std;
 
 
@@ -59,69 +60,21 @@ void LCD::setupLCD() {
 }
 */
 
-void LCD::liftOffText() {
-  lcd.setCursor(0, 0);
-  lcd.print("DRONE LIFT ØHH");
-  delay(1000);
-  lcd.clear();
-  lcd.setCursor(0,1);
-  lcd.print("DRONE LIFT OFF!!");
-  delay(1000);
-  lcd.clear(); 
-
-}
-
-void LCD::BatteryLevel() {
+void LCD::BatteryLevel(String batLvl) {
 
   lcd.setCursor(0, 0);
-  lcd.print("Battery level: ");
-  delay(1000);
-  lcd.clear();
+  lcd.print(batLvl);
+  //delay(1000);
+  /*lcd.clear();
   lcd.setCursor(0,1);
-  lcd.print("GOING TO MISSION PAD ONE!");
+  lcd.print("70%");
   delay(1000);
-  lcd.clear(); 
+  lcd.clear();*/ 
 }
-void LCD::missionPadTwoText() {
- lcd.setCursor(0, 0);
-  lcd.print("GOING TO MISSION PAD TWO!");
-  delay(1000);
-  lcd.clear();
-  lcd.setCursor(0,1);
-  lcd.print("GOING TO MISSION PAD TWO!");
-  delay(1000);
-  lcd.clear(); 
-}
-void LCD::missionPadThreeText() {
-     lcd.setCursor(0, 0);
-  lcd.print("GOING TO MISSION PAD THREE!");
-  delay(1000);
-  lcd.clear();
-  lcd.setCursor(0,1);
-  lcd.print("GOING TO MISSION PAD THREE!");
-  delay(1000);
-  lcd.clear(); 
-}
-void LCD::missionPadFourText() {
- lcd.setCursor(0, 0);
-  lcd.print("GOING TO MISSION PAD FOUR!");
-  delay(1000);
-  lcd.clear();
-  lcd.setCursor(0,1);
-  lcd.print("GOING TO MISSION PAD FOUR!");
-  delay(1000);
-  lcd.clear(); 
-}
-void LCD::missionPadEnd() {
 
-     lcd.setCursor(0, 0);
-  lcd.print("COURSE DONE, TIME TO LAND!");
-  delay(1000);
-  lcd.clear();
-  lcd.setCursor(0,1);
-  lcd.print("COURSE DONE, TIME TO LAND!");
-  delay(1000);
-  lcd.clear(); 
+void LCD::testPrint(){
+        lcd.setCursor(0, 0);
+        lcd.print("heeyooo");
 }
 
 

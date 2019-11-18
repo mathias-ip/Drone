@@ -7,6 +7,7 @@
 #include "AsyncUDP.h"
 #include <ButtonListener.h>
 #include <joystick.h>
+#include <LCD.h>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class Drone : public ButtonListener
 {
     public:
         Drone(String ssid , String password);
+        void BatteryButton(int pinPushBtn);
         void connect();
         void sendCommand(String commmand);
         void setIp(String ip);
@@ -23,8 +25,11 @@ class Drone : public ButtonListener
         void loop();
         Joystick *joystick;
         void motion();
+        String lastCommand = "";
+        LCD *lcd;
     private:
         void commandResponse(String response);
+        int pinPushBtn;
         String ssid;
         String password;
         AsyncUDP udp;

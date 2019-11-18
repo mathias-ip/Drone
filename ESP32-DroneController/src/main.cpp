@@ -2,18 +2,26 @@
 #include <string.h>
 #include "drone.h"
 #include <joystick.h>
+#include <LCD.h>
+#include <LiquidCrystal_I2C.h>
 
-String ssid = "TELLO-FE32CE"; //navnet på dronen ved batteriet
-String password = "";
+String ssid = "flexlab2"; //"TELLO-FE32CE"; //navnet på dronen ved batteriet
+String password = "flexiwifi";
 
 Drone drone(ssid, password);
 Joystick joystick(15, 34, 35); // pins: btn, x, y
 
+int lcdc = 16;
+int lcdr = 2;
+
+LCD myLED(lcdc, lcdr);
+
 void setup()
 {
   Serial.begin(9600);
-
+  myLED.setupLCD();
   drone.joystick = &joystick; 
+  drone.lcd =&myLED;
 
   for (size_t i = 0; i < 5; i++)
   {
@@ -32,5 +40,7 @@ void setup()
 void loop()
 {
   joystick.loop();
-  drone.loop();;
+  drone.loop();
+  //myLED.BatteryLevel("");
+  //myLED.testPrint();
 } 

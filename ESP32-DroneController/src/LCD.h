@@ -11,12 +11,8 @@ class LCD
     void setup();
     void loop();
     void liftOffText();
-    void BatteryLevel();
-    void missionPadTwoText();
-    void missionPadThreeText();
-    void missionPadFourText();
-    void missionPadEnd();
-
+    void BatteryLevel(String batLvl);
+    void testPrint();
     int lcdr;
     int lcdc;
 

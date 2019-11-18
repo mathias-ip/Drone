@@ -2,11 +2,15 @@
 #include "drone.h"
 #include <joystick.h>
 #include <Position.h>
+#include <LCD.h>
 
 Drone::Drone(String ssid, String password)
 {
     this->ssid = ssid;
     this->password = password; 
+    
+    this->pinPushBtn = 33;
+    pinMode(this->pinPushBtn, INPUT_PULLUP);
 }
 
 void Drone::connect()
@@ -60,6 +64,7 @@ void Drone::commandResponse(String response)
     Serial.println(response.c_str());
     Serial.print("message length: ");
     Serial.println(response.length());
+    this->lastCommand = response;
 }
 
 void Drone::ButtonPressed()
@@ -78,9 +83,31 @@ void Drone::ButtonPressed()
     }
 }
 
+void Drone::BatteryButton(int pinPushBtn){
+   
+    
+   /* if (digitalRead(pinPushBtn) == LOW) {
+        Serial.println("Checking Battery level");
+        //sendCommand("battery?");
+        //delay(500);
+        //lcd.BatteryLevel(this->lastCommand);
+        lcd.testPrint();
+    }*/
+
+}
+
 void Drone::loop()
 {
     motion();
+
+    if (digitalRead(pinPushBtn) == LOW) {
+        Serial.println("Checking Battery level");
+        //sendCommand("battery?");
+        //delay(500);
+        //lcd.BatteryLevel(this->lastCommand);
+
+        lcd->testPrint();
+    }
     // Using Position object to retrieve information
     
     /*Position joystickPosition = this->joystick->getPosition();
@@ -200,8 +227,9 @@ void Drone::motion(){
        delay(5000);
        this->sendCommand("forward 50");
        Serial.println("left");
-       delay(2000)
-       Serial.println("Sequence done");
+       delay(2000);
+       //Serial.println("Sequence done");
     }
+
     }
 }
